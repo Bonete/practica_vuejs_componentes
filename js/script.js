@@ -38,7 +38,6 @@ var server_data = {
     }
 };
 
-
 // TODO: Componente edit-form
 Vue.component('edit-form', {
 
@@ -46,43 +45,17 @@ Vue.component('edit-form', {
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-    template: `
-    <div class="jumbotron" style="background-color: #E8ECEE;">
-                <h1 id="title" class="display-5">{{bucle}}</h1>
-            </div>
-    
-            <div class="card-group">
-    
-                <div class="card" v-for="elem1 in col.collection.items">
-    
-                    <div class="card-body">
-                        <dl>
-                            <div v-for="elem2 in elem1.data">
-                                <dt>
-                                    <h5 class="card-title">{{elem2.prompt}}</h5>
-                                </dt>
-                                <dd>
-                                    <p class="card-text">{{elem2.value}}</p>
-                                </dd>
-                            </div>
-                            <a :href="elem1.href" class="btn btn-primary">Ver</a>
-                            <a :click="toggleEditFormVisibility" class="btn btn-secondary">Editar</a>
-                        </dl>
-                    </div>
-    
-                </div>
-    
-            </div>
-    `
+    props:["elem"],
+    template: "#itemData"
 
 })
 
 // Aplicación VueJS
 // La aplicación recibe los datos en la variable de datos "col"
-var app = new Vue({
-    el: '#app',
-    data: {
-        col: server_data
-    }
-});
+    var app = new Vue({
+        el: '#app',
+        data: {
+            col: server_data
+        }
+    });
 
