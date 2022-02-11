@@ -15,11 +15,14 @@
 
         <!-- https://vuejs.org/v2/guide/index.html -->
         <div id="app">
-            <div>
+            <div class="container">
                 <div class="jumbotron" style="background-color: #E8ECEE;">
                     <h1 id="title" class="display-5">{{ col.collection.title }}</h1>
                 </div>
-                <item-data elemento="array" v-for="elem1 in col.collection.items"></item-data>
+                <div class="card-group">      
+                    <div is="item-data" v-for="elemento in col.collection.items" v-if="elemento.visible" v-bind:e="elemento" ></div>
+                    <div v-bind:e="elemento" v-else is="edit-form" v-bind:e="elemento"></div>   
+                </div>
             </div>
         </div>
         
@@ -37,14 +40,32 @@
             <!--
                  TODO: Componente edit-form 
             -->
+            <div class="card">
+
+                <div class="card-body">
+                    <dl>
+                        <div v-for="elem1 in e.data">
+                            <dt>
+                                <h5 class="card-title">{{elem1.prompt}}</h5>
+                            </dt>
+                            <dd>
+                                <h5 class="card-title">{{elem1.prompt}}</h5>
+                            </dd>
+                        </div>
+                        <input v-if="elem1.prompt != 'Description'" type="text" v-model:text="elem1.value"/>
+                        <textarea v-else type="text"  v-model:text="elem1.value"> </textarea>     
+                    </dl>
+                  </div>  
+                </div>
+                <a v-on:click="closeForm(e)" id="formButton" class="btn btn-danger">Cerrar</a>
+              </div>
             
 
         </script>
 
         <!-- Plantilla para el componente item-data -->
         <script type="text/x-template" id="itemData">
-            <div class="card-group">
-
+            
                 <div class="card" >
     
                     <div class="card-body">
@@ -58,12 +79,13 @@
                                 </dd>
                             </div>
                             <a v-bind:href="elem1.href" class="btn btn-primary">Ver</a>
+                            <a v-on:click="toggleEditFormVisibility(element)" id="formButton" type="button" class="btn btn-secondary">Editar</a>
                         </dl>
                     </div>
     
                 </div>
     
-            </div>
+            
            
             <!--
                  TODO: Componente item-data
