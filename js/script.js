@@ -1,5 +1,5 @@
 // Sample data
-
+var array_pelis = []
 var server_data = {
     collection :
     {
@@ -38,27 +38,30 @@ var server_data = {
         ]
     }
 };
-
 // TODO: Componente edit-form
-Vue.component('edit-form', {    
-    props: {e: Object},
-    template: '#editForm',
+Vue.component('edit-form', {   
+    props: ["parametro", "elemento"],
+    template: "#editForm",
     methods: {
-        closeForm: function(itemdata){
-            
-            itemdata.visible = true;
+        closeForm : function (e) {
+
+            array_pelis.splice(array_pelis.indexOf(e), 1);
         }
     }
 })
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-    props:{e: Object},
+    props: ["parametro", "elemento"],
     template: "#itemData",
+    data() {
+        return {
+            editando: false
+        }
+    },
     methods: {
-        toggleEditFormVisibility: function(itemdata){
-            
-            itemdata.visible = false;
+        toggleEditFormVisibility: function (e) {
+            array_pelis.push(e);
         }
     }
 
@@ -69,7 +72,8 @@ Vue.component('item-data', {
     var app = new Vue({
         el: '#app',
         data: {
-            col: server_data
+            col: server_data,
+            pelis: array_pelis
         }
     });
 
