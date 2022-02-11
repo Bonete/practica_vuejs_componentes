@@ -11,7 +11,7 @@
   "dependencies": {},
   "devDependencies": {
     "chromedriver": "^96.0.0",
-    "nightwatch": "^1.7.13",
+    "nightwatch": "^2.0.4",
     "serve-handler": "^6.1.3"
   }
 }

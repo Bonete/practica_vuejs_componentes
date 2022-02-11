@@ -1,4 +1,5 @@
 // Sample data
+
 var server_data = {
     collection :
     {
@@ -39,13 +40,13 @@ var server_data = {
 };
 
 // TODO: Componente edit-form
-Vue.component('edit-form', {
+Vue.component('edit-form', {    
 
 })
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-    props:["elem"],
+    props:["elemento"],
     template: "#itemData"
 
 })
